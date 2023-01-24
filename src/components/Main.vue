@@ -10,16 +10,18 @@
 <script>
 import axios from 'axios'
 export default {
-    data:{
-        list: []
+    data() {
+        return {
+            list: null
+        }
     },
     name: "Main.vue",
     created() {
-        axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        axios.get('https://qnietzsche.github.io/showrndcard/dist/data/list.json')
             .then(function(response){
                 //デバッグ用にconsoleに出力
-                console.log(response.data.bpi)
-                this.bpi = response.data.bpi
+                console.log(response.data.imgpath[0])
+                this.list = response.data.imgpath
             }.bind(this))
             .catch(function(error){
                 console.log(error)
