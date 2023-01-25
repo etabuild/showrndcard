@@ -5,12 +5,18 @@
     <div id="content">
 
         <div id="imgview">
-            <div id="showedList">
-                <p v-if="isempty">履歴なし</p>
-                <div v-for="id in imghistory" @click="historyClick(id)" class="historyblock">
-                    <p class="historylabel" v-html="'imgid: '+id"></p>
-                    <img class="historyimg"
-                         v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
+            <div id="showedListWrapper">
+                <p v-if="isempty" id="historytitle">履歴なし</p>
+                <p v-if="isempty==false" id="historytitle">履歴</p>
+                <div id="showedList">
+
+
+
+                    <div v-for="id in imghistory" @click="historyClick(id)" class="historyblock">
+                        <p class="historylabel" v-html="'imgid: '+id"></p>
+                        <img class="historyimg"
+                             v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
+                    </div>
                 </div>
             </div>
             <button id="b_generate" @click="gen">ここを押そうね☆</button>
@@ -73,6 +79,33 @@ export default {
 </script>
 
 <style scoped>
+
+#historytitle {
+    color:#fff;
+    position: absolute;
+    top: 0;
+    left: 30%;
+    right: 30%;
+    border-radius: 4px;
+    border: solid 2px #000;
+    /*
+    width: 60px;
+    */
+    z-index: 19;
+    background: rgba(87, 63, 236, 0.68)
+
+
+}
+
+#showedListWrapper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30vw;
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -94,7 +127,7 @@ body.no_scroll {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: rgba(232, 232, 232, 0.66);
+    background-color: rgba(232, 232, 232, 0.71);
 }
 
 .historyblock {
@@ -113,7 +146,9 @@ body.no_scroll {
     border: solid 2px #000000;
 }
 
+
 #showedList {
+    padding-top: 40px;
     width: 30vw;
     position: absolute;
     left: 0;
@@ -175,13 +210,15 @@ body.no_scroll {
     background: none;
     border-radius: 10px;
     border: none;
-
+    transition: .2s
 }
 
 #b_generate:hover {
-    background: rgba(52, 34, 86, 0.25);
+    /*background: #6737FFFF;*/
     border: solid 0px;
     margin-top: 50px;
+    text-shadow: #6737FFFF 0px 0 10px;
+    transition: .1s;
 }
 
 #imgview {
