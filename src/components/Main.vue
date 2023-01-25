@@ -120,11 +120,12 @@ body.no_scroll {
 }
 
 #header {
+    color: #573fec;
     z-index: 20;
     text-align: center;
     border-bottom: solid #000 1px;
     font-family: Line_Seed_JP;
-    font-weight: bold;
+    font-weight: 900;
     font-size: 2em;
     width: 100%;
     position: fixed;
