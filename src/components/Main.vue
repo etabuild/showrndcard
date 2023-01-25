@@ -12,7 +12,7 @@
                 </div>
             </div>
             <button id="b_generate" @click="gen">ここを押そうね☆</button>
-            <p v-html="imgnum" id="imgid"></p>
+            <p v-html="'imgid: '+imgnum" id="imgid"></p>
             <img id="card" :src="imgsrc">
         </div>
     </div>
@@ -90,10 +90,11 @@ body.no_scroll {
 .historyblock {
     min-height: 20px;
     background-color: #e8e8e8;
-    margin: 4px;
+    margin: 7px;
     border-radius: 3px;
     font-family: Line_Seed_JP;
     font-weight: normal;
+
 }
 
 #showedList {
@@ -104,8 +105,9 @@ body.no_scroll {
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.47);
     border: solid 1.5px #573fec;
-    border-radius: 4px;
-    overflow: scroll;
+    border-radius: 6px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
 }
 
@@ -137,6 +139,7 @@ body.no_scroll {
     padding: 12vh 0 0 0;
     text-align: center;
     max-height: 100vh;
+    font-family: Line_Seed_JP;
 
     /*
     display: flex;
