@@ -8,7 +8,9 @@
             <div id="showedList">
                 <p v-if="isempty">履歴なし</p>
                 <div v-for="id in imghistory" @click="historyClick(id)" class="historyblock">
-                    <img class="historyimg" v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
+                    <p class="historylabel" v-html="'imgid: '+id"></p>
+                    <img class="historyimg"
+                         v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
                 </div>
             </div>
             <button id="b_generate" @click="gen">ここを押そうね☆</button>
@@ -47,7 +49,7 @@ export default {
             })
     },
     methods: {
-        historyClick: function(id){
+        historyClick: function (id) {
             this.genbyid(id)
         },
         gen: function () {
@@ -59,7 +61,7 @@ export default {
             var box = document.getElementById('showedList')
             box.scrollTo(0, box.scrollHeight);
         },
-        genbyid: function (id){
+        genbyid: function (id) {
             this.isempty = false
             this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[id]
 
@@ -83,18 +85,32 @@ body.no_scroll {
     overflow: hidden;
 }
 
-.historyimg{
+.historyimg {
     height: 140px;
+    padding: 8px;
+}
+
+.historylabel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(232, 232, 232, 0.66);
 }
 
 .historyblock {
     min-height: 20px;
     background-color: #e8e8e8;
     margin: 7px;
-    border-radius: 3px;
+    border-radius: 8px;
     font-family: Line_Seed_JP;
     font-weight: normal;
+    border: solid 2px #fff;
+    position: relative;
 
+}
+
+.historyblock:hover {
+    border: solid 2px #000000;
 }
 
 #showedList {
@@ -104,8 +120,8 @@ body.no_scroll {
     top: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.47);
-    border: solid 1.5px #573fec;
-    border-radius: 6px;
+    border: solid 2px #573fec;
+    border-radius: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
 
@@ -176,7 +192,7 @@ body.no_scroll {
     margin: 0;
 }
 
-#imgid{
+#imgid {
     margin: 0;
 }
 
