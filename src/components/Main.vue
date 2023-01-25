@@ -128,6 +128,7 @@ body.no_scroll {
     top: 10px;
     left: 10px;
     background-color: rgba(232, 232, 232, 0.71);
+    font-size: 0.8em;
 }
 
 .historyblock {
