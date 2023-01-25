@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         historyClick: function(id){
-
+            this.genbyid(id)
         },
         gen: function () {
             var random = Math.floor(Math.random() * 15760);
@@ -58,6 +58,11 @@ export default {
             this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[random]
             var box = document.getElementById('showedList')
             box.scrollTo(0, box.scrollHeight);
+        },
+        genbyid: function (id){
+            this.isempty = false
+            this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[id]
+
         }
     }
 }
@@ -106,9 +111,10 @@ body.no_scroll {
 
 #card {
     margin: 0 auto;
-    width: 100%;
+    /*width: 90%;
     max-width: 30vw;
-    min-width: 300px;
+    min-width: 300px;*/
+    height: 60vh;
 }
 
 #header {
@@ -131,6 +137,7 @@ body.no_scroll {
     padding: 12vh 0 0 0;
     text-align: center;
     max-height: 100vh;
+
     /*
     display: flex;
     */
@@ -159,7 +166,6 @@ body.no_scroll {
 
 #imgview {
     position: relative;
-
 }
 
 .historyblock p {
