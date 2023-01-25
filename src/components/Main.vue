@@ -3,8 +3,18 @@
         <p>ランダムなカードを表示</p>
     </div>
     <div id="content">
-        <button id="b_generate" @click="gen">画像表示</button>
-        <img id="card" src="https://dm.takaratomy.co.jp/wp-content/card/cardthumb/dm22sp2-004.jpg">
+
+        <div id="imgview">
+            <div id="showedList">
+                <p v-if="isempty">履歴なし</p>
+                <div v-for="id in imghistory" class="historyblock">
+                    <img class="historyimg" v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
+                </div>
+            </div>
+            <button id="b_generate" @click="gen">ここを押そうね☆</button>
+            <p v-html="imgnum" id="imgid"></p>
+            <img id="card" :src="imgsrc">
+        </div>
     </div>
 </template>
 
@@ -14,11 +24,17 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            list: null
+            list: null,
+            imgnum: 0,
+            imgsrc: "https://dm.takaratomy.co.jp/wp-content/card/cardthumb/dm22sp2-004.jpg",
+            imghistory: [],
+            isempty: true
+
         }
     },
     name: "Main.vue",
     created() {
+        this.imgel = document.getElementById("card")
         axios.get('https://cardpickrandom.008900011055q3f.repl.co/data/list.json')
             .then(function (response) {
                 //デバッグ用にconsoleに出力
@@ -26,14 +42,17 @@ export default {
                 this.list = response.data.imgpath
             }.bind(this))
             .catch(function (error) {
+                alert('jsonの読み込みに失敗しました。再読み込みとかしてみて')
                 console.log(error)
             })
     },
     methods: {
         gen: function () {
-            var random = Math.floor( Math.random() * 15760 );
-            var el = document.getElementById("card")
-            el.setAttribute("src", 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+this.list[random]);
+            var random = Math.floor(Math.random() * 15760);
+            this.imgnum = random
+            this.imghistory.push(random)
+            this.isempty = false
+            this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[random]
         }
     }
 }
@@ -50,9 +69,39 @@ body {
 
 }
 
+body.no_scroll {
+    overflow: hidden;
+}
+
+.historyimg{
+    height: 140px;
+}
+
+.historyblock {
+    min-height: 20px;
+    background-color: #e8e8e8;
+    margin: 4px;
+    border-radius: 3px;
+    font-family: Line_Seed_JP;
+    font-weight: normal;
+}
+
+#showedList {
+    width: 30vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.47);
+    border: solid 1.5px #573fec;
+    border-radius: 4px;
+    overflow: scroll;
+
+}
+
 #card {
     margin: 0 auto;
-    width:100%;
+    width: 100%;
     max-width: 30vw;
     min-width: 300px;
 }
@@ -73,9 +122,12 @@ body {
 }
 
 #content {
-    padding: 15vh 0 0 0;
+    padding: 12vh 0 0 0;
     text-align: center;
-    height: 100vh;
+    max-height: 100vh;
+    /*
+    display: flex;
+    */
 }
 
 #b_generate {
@@ -99,5 +151,17 @@ body {
     margin-top: 50px;
 }
 
+#imgview {
+    position: relative;
+
+}
+
+.historyblock p {
+    margin: 0;
+}
+
+#imgid{
+    margin: 0;
+}
 
 </style>

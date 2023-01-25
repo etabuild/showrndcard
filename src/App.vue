@@ -13,4 +13,7 @@ body{
     overflow: hidden;
 
 }
+body.no_scroll {
+    overflow: hidden;
+}
 </style>
