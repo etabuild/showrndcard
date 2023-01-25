@@ -7,7 +7,7 @@
         <div id="imgview">
             <div id="showedList">
                 <p v-if="isempty">履歴なし</p>
-                <div v-for="id in imghistory" class="historyblock">
+                <div v-for="id in imghistory" @click="historyClick(id)" class="historyblock">
                     <img class="historyimg" v-bind:src="'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/'+list[id]">
                 </div>
             </div>
@@ -47,12 +47,17 @@ export default {
             })
     },
     methods: {
+        historyClick: function(id){
+
+        },
         gen: function () {
             var random = Math.floor(Math.random() * 15760);
             this.imgnum = random
             this.imghistory.push(random)
             this.isempty = false
             this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[random]
+            var box = document.getElementById('showedList')
+            box.scrollTo(0, box.scrollHeight);
         }
     }
 }
@@ -107,6 +112,7 @@ body.no_scroll {
 }
 
 #header {
+    z-index: 20;
     text-align: center;
     border-bottom: solid #000 1px;
     font-family: Line_Seed_JP;
