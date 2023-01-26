@@ -11,7 +11,6 @@
                 <div id="showedList">
 
 
-
                     <div v-for="id in imghistory" @click="historyClick(id)" class="historyblock">
                         <p class="historylabel" v-html="'imgid: '+id"></p>
                         <img class="historyimg"
@@ -82,7 +81,7 @@ export default {
 <style scoped>
 
 #historytitle {
-    color:#fff;
+    color: #fff;
     position: absolute;
     top: 0;
     left: 30%;
@@ -98,7 +97,7 @@ export default {
 
 }
 
-#showedListWrapper{
+#showedListWrapper {
     position: absolute;
     left: 0;
     top: 0;
