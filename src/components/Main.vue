@@ -69,6 +69,7 @@ export default {
         },
         genbyid: function (id) {
             this.isempty = false
+            this.imgnum = id
             this.imgsrc = 'https://dm.takaratomy.co.jp/wp-content/card/cardthumb/' + this.list[id]
 
         }
