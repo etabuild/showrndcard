@@ -86,8 +86,9 @@ export default {
     top: 0;
     left: 30%;
     right: 30%;
-    border-radius: 4px;
-    border: solid 2px #000;
+    height: 28px;
+    border-radius: 13px;
+    border: solid 1px #000;
     /*
     width: 60px;
     */
