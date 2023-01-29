@@ -49,7 +49,7 @@ export default {
                 this.list = response.data.imgpath
             }.bind(this))
             .catch(function (error) {
-                alert('jsonの読み込みに失敗しました。再読み込みとかしてみて')
+                alert('jsonの読み込みに失敗しました。再読み込みしてそれでも無理だったら明日試そうね☆')
                 console.log(error)
             })
     },
