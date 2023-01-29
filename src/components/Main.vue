@@ -4,10 +4,10 @@
     </div>
     <div id="content">
 
-        <div id="imgview">
-            <div id="showedListWrapper">
-                <p v-if="isempty" id="historytitle">履歴なし</p>
-                <p v-if="isempty==false" id="historytitle">履歴</p>
+        <div id="view_container">
+            <div id="item_history">
+                <p v-if="isempty" id="label_history">履歴なし</p>
+                <p v-if="isempty==false" id="label_history">履歴</p>
                 <div id="showedList">
 
 
@@ -18,9 +18,16 @@
                     </div>
                 </div>
             </div>
-            <button id="b_generate" @click="gen">ここを押そうね☆</button>
-            <p v-html="'imgid: '+imgnum" id="imgid"></p>
-            <img id="card" :src="imgsrc">
+            <div id="item_button">
+                <button id="b_generate" @click="gen">ここを押そうね☆</button>
+                <p v-html="'imgid: '+imgnum" id="imgid"></p>
+
+            </div>
+            <div id="item_viewer">
+                <div id="img_wrapper">
+                    <img id="card" :src="imgsrc">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -80,7 +87,7 @@ export default {
 
 <style scoped>
 
-#historytitle {
+#label_history {
     color: #fff;
     position: absolute;
     top: 0;
@@ -89,6 +96,7 @@ export default {
     height: 28px;
     border-radius: 13px;
     border: solid 1px #000;
+    margin-top: 12px;
     /*
     width: 60px;
     */
@@ -98,15 +106,36 @@ export default {
 
 }
 
-#showedListWrapper {
+#item_history {
     position: absolute;
+    grid-row: 2/3;
+    grid-column: 1/2;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 30vw;
+    width: 100%;
 }
 
+#item_viewer {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    /*
+    height: 100%
+    */
+}
 
+#item_button {
+    grid-row: 1/2;
+    grid-column: 1/3;
+}
+
+#img_wrapper{
+    /*
+    width: fit-content;
+    */
+    margin-left: 5px;
+    height: fit-content;
+}
 body {
     margin: 0;
     padding: 0;
@@ -141,17 +170,18 @@ body.no_scroll {
     font-weight: normal;
     border: solid 2px #fff;
     position: relative;
-
+    transition: .1s;
 }
 
 .historyblock:hover {
     border: solid 2px #000000;
+    transition: .5s;
 }
 
 
 #showedList {
     padding-top: 40px;
-    width: 30vw;
+    width: 100%;
     position: absolute;
     left: 0;
     top: 0;
@@ -166,35 +196,46 @@ body.no_scroll {
 
 #card {
     margin: 0 auto;
+    text-align: left;
     /*width: 90%;
     max-width: 30vw;
     min-width: 300px;*/
-    height: 60vh;
+    height: 65vh;
+
 }
 
 #header {
     color: #573fec;
     z-index: 20;
     text-align: center;
+    /*
     border-bottom: solid #000 1px;
+    */
     font-family: Line_Seed_JP;
     font-weight: 900;
     font-size: 2em;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: auto;
+    width: 100vw;
+    /*    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;*/
+    height: 12vh;
+    line-height: 12vh;
+    /*
     background: rgba(255, 255, 255, 0.47)
+    */
+    background: #e0dcfd;
+
 }
 
+
 #content {
-    padding: 12vh 0 0 0;
+    /*
+    padding: 0 18vw 0 18vw;
+    */
     text-align: center;
     max-height: 100vh;
     font-family: Line_Seed_JP;
-
     /*
     display: flex;
     */
@@ -204,7 +245,7 @@ body.no_scroll {
     display: block;
     font-family: Line_Seed_JP;
 
-    margin: 50px auto 20px auto;
+    margin: 10px auto 0px auto;
 
     padding: 5px;
     width: 200px;
@@ -218,14 +259,21 @@ body.no_scroll {
 #b_generate:hover {
     /*background: #6737FFFF;*/
     border: solid 0px;
-    margin-top: 50px;
     text-shadow: #6737FFFF 0px 0 10px;
     transition: .1s;
 }
 
-#imgview {
+#view_container {
+    padding: 20px;
     position: relative;
+    display: grid;
+    grid-template-rows: 1fr 4.5fr;
+    grid-template-columns: 1fr 2fr;
+    height: 80vh;
+    width: 55%;
+    margin: 0 auto;
 }
+
 
 .historyblock p {
     margin: 0;
@@ -234,5 +282,38 @@ body.no_scroll {
 #imgid {
     margin: 0;
 }
+
+
+
+@media screen and (max-width: 860px) {
+    #view_container{
+        width: 90%;
+
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #view_container {
+        display: block;
+
+
+    }
+
+    #header{
+        font-size: 1.3em;
+    }
+    #card {
+        width: 90%;
+        height: auto;
+    }
+
+    #item_history{
+        display: none;
+    }
+
+
+}
+
+
 
 </style>

@@ -4,16 +4,27 @@ import Main from './components/Main.vue'
 
 <template>
 
-    <Main />
+    <Main/>
 </template>
 
-<style scoped>
+<style>
 @import 'assets/fonts/fonts.css';
-body{
+
+body {
     overflow: hidden;
 
+
 }
-body.no_scroll {
-    overflow: hidden;
+
+body, * {
+    margin: 0;
+    padding: 0;
 }
+@media screen and (min-width: 1050px) {
+
+    body{
+        min-width: 500px;
+    }
+}
+
 </style>
