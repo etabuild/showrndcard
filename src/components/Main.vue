@@ -130,11 +130,9 @@ export default {
 }
 
 #img_wrapper{
-    /*
     width: fit-content;
-    */
-    margin-left: 5px;
-    height: fit-content;
+    text-align: left;
+    margin-left: 5%;
 }
 body {
     margin: 0;
@@ -200,7 +198,10 @@ body.no_scroll {
     /*width: 90%;
     max-width: 30vw;
     min-width: 300px;*/
+    /*
     height: 65vh;
+    */
+    width: 80%;
 
 }
 

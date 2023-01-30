@@ -11,7 +11,7 @@ import Main from './components/Main.vue'
 @import 'assets/fonts/fonts.css';
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 
 
 }
